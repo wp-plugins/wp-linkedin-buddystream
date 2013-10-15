@@ -38,3 +38,17 @@ function wp_linkedin_buddystream_filter_oauth_token($token) {
 }
 
 add_filter('linkedin_oauthtoken', 'wp_linkedin_buddystream_filter_oauth_token');
+
+
+
+function wp_linkedin_buddystream_filter_cachekey($cachekey) {
+	$user = bp_displayed_user_id();
+
+	if ($user) {
+		return sha1($cachekey . $user);
+	}
+
+	return $cachekey;
+}
+
+add_filter('linkedin_cachekey', 'wp_linkedin_buddystream_filter_cachekey');
