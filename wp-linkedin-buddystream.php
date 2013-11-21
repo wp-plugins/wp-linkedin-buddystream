@@ -49,13 +49,12 @@ class WPLinkedInBuddystreamConnection extends WPLinkedInConnection {
 	}
 
 	public function get_authorization_url() {
-		global $bp;
 		return 'https://www.linkedin.com/uas/oauth2/authorization?' . $this->urlencode(array(
 				'response_type' => 'code',
 				'client_id' => $this->app_key,
 				'scope' => 'r_fullprofile rw_nus',
 				'state' => uniqid(),
-				'redirect_uri' => $bp->loggedin_user->domain . BP_SETTINGS_SLUG . '/buddystream-networks/?network=linkedin'
+				'redirect_uri' => site_url(BP_SETTINGS_SLUG . '/buddystream-networks/?network=linkedin')
 			));
 	}
 
@@ -77,8 +76,10 @@ class WPLinkedInBuddystreamConnection extends WPLinkedInConnection {
 
 }
 
-function wp_linkedin_buddystream_connection($linkedin) {
-	$user_id = bp_displayed_user_id();
-	return $user_id ? $linkedin : WPLinkedInBuddystreamConnection($user_id);
+if (function_exists('bp_displayed_user_id')) {
+	function wp_linkedin_buddystream_connection($linkedin) {
+		$user_id = bp_displayed_user_id();
+		return $user_id ? $linkedin : WPLinkedInBuddystreamConnection($user_id);
+	}
+	add_filter('linkedin_connection', 'wp_linkedin_buddystream_connection');
 }
-add_filter('linkedin_connection', 'wp_linkedin_buddystream_connection');
