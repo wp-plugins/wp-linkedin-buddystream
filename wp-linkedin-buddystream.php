@@ -48,6 +48,17 @@ class WPLinkedInBuddystreamConnection extends WPLinkedInConnection {
 		return delete_user_option($this->user_id, $key);
 	}
 
+	public function get_authorization_url() {
+		global $bp;
+		return 'https://www.linkedin.com/uas/oauth2/authorization?' . $this->urlencode(array(
+				'response_type' => 'code',
+				'client_id' => $this->app_key,
+				'scope' => 'r_fullprofile rw_nus',
+				'state' => uniqid(),
+				'redirect_uri' => $bp->loggedin_user->domain . BP_SETTINGS_SLUG . '/buddystream-networks/?network=linkedin'
+			));
+	}
+
 	protected function send_invalid_token_email() {
 		if (LINKEDIN_SENDMAIL_ON_TOKEN_EXPIRY && !get_cache('wp-linkedin_invalid_token_mail_sent')) {
 			$user_info = get_userdata($this->user_id);
