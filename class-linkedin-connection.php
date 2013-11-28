@@ -37,7 +37,7 @@ class WPLinkedInBuddystreamConnection extends WPLinkedInConnection {
 	}
 
 	public function get_authorization_url() {
-		return 'https://www.linkedin.com/uas/oauth2/authorization?' . $this->urlencode(array(
+		return 'https://www.linkedin.com/uas/oauth2/authorization?' . http_build_query(array(
 				'response_type' => 'code',
 				'client_id' => $this->app_key,
 				'scope' => 'r_fullprofile rw_nus',

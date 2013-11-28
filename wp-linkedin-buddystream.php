@@ -24,7 +24,7 @@ Version: 1.0
 */
 
 
-if (function_exists('bp_displayed_user_id')) {
+if (function_exists('buddystream_init') && function_exists('wp_linkedin_get_profile')) {
 	function wp_linkedin_buddystream_connection($conn) {
 		$user_id = bp_displayed_user_id();
 
@@ -37,3 +37,12 @@ if (function_exists('bp_displayed_user_id')) {
 	}
 	add_filter('linkedin_connection', 'wp_linkedin_buddystream_connection');
 }
+
+function wp_linkedin_buddystream_admin_notices() {
+	if (!function_exists('buddystream_init') || !function_exists('wp_linkedin_get_profile')) {
+		echo '<div class="error" style="font-weight:bold;">';
+		echo __('The WP LinkedIn/BuddyStream integration plugin needs both the BuddyStream plugin and the WP LinkedIn plugin to be installed and activated.', 'wp-linkedin-buddystream');
+		echo '</div>';
+	}
+}
+add_action('admin_notices', 'wp_linkedin_buddystream_admin_notices');
