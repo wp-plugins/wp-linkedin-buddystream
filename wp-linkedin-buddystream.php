@@ -26,7 +26,10 @@ Version: 1.0
 
 if (function_exists('buddystream_init') && function_exists('wp_linkedin_get_profile')) {
 	function wp_linkedin_buddystream_connection($conn) {
-		$user_id = bp_displayed_user_id();
+		global $bp;
+		$user_id = !empty($_REQUEST['user_id']) ? $_REQUEST['user_id'] :
+						!empty($bp->displayed_user->id) ? $bp->displayed_user->id :
+						!empty($bp->loggedin_user->id) ? $bp->loggedin_user->id : false;
 
 		if ($user_id) {
 			require_once 'class-linkedin-connection.php';

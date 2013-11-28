@@ -42,7 +42,7 @@ class WPLinkedInBuddystreamConnection extends WPLinkedInConnection {
 				'client_id' => $this->app_key,
 				'scope' => 'r_fullprofile rw_nus',
 				'state' => uniqid(),
-				'redirect_uri' => site_url(BP_SETTINGS_SLUG . '/buddystream-networks/?network=linkedin')
+				'redirect_uri' => bp_core_get_user_domain($this->user_id) . BP_SETTINGS_SLUG . '/buddystream-networks/?network=linkedin'
 			));
 	}
 
