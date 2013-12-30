@@ -5,7 +5,7 @@ Donate link: http://vedovini.net/plugins/?utm_source=wordpress&utm_medium=plugin
 Tags: linkedin,resume,recommendations,profile,buddystream,buddypress
 Requires at least: 2.7
 Tested up to: 3.8
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -25,6 +25,8 @@ This plugin follows the [standard WordPress installation method](http://codex.wo
 
 == Changelog ==
 
+= Version 1.0.2 =
+- Fixing call to `get_cache` in `WPLinkedInBuddystreamConnection` class.
 
 = Version 1.0.1 =
 - Fixing methods visibility issues in class WPLinkedInBuddystreamConnection

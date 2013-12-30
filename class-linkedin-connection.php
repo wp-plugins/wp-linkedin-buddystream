@@ -41,7 +41,7 @@ class WPLinkedInBuddystreamConnection extends WPLinkedInConnection {
 	}
 
 	public function send_invalid_token_email() {
-		if (LINKEDIN_SENDMAIL_ON_TOKEN_EXPIRY && !get_cache('wp-linkedin_invalid_token_mail_sent')) {
+		if (LINKEDIN_SENDMAIL_ON_TOKEN_EXPIRY && !$this->get_cache('wp-linkedin_invalid_token_mail_sent')) {
 			$user_info = get_userdata($this->user_id);
 			$blog_name = get_option('blogname');
 			$user_email = $user_info->user_email;
