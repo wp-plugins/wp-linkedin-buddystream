@@ -12,6 +12,8 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 == Description ==
 
+This plugin is not actively maintained, please check out the WP-LinkedIn Multi-Users plugin extension instead: http://vedovini.net/downloads/wp-linkedin-multi-users/
+
 This plugin integrates the WP-LinkedIn and BuddyStream plugins and enables showing more than one profile per install.
 
 
